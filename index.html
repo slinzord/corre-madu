@@ -106,6 +106,27 @@
   }
   footer { text-align: center; font-size: 11.5px; color: var(--suave); line-height: 1.6; padding: 0 30px; }
   footer strong { color: var(--magenta); font-family: "Fraunces", Georgia, serif; font-style: italic; font-weight: 400; font-size: 15px; display: block; margin-bottom: 4px; }
+
+  /* Aviso para quem abriu pelo navegador do Instagram/Facebook (o TikTok não abre de lá) */
+  .aviso-fundo {
+    position: fixed; inset: 0; background: rgba(58, 20, 36, .55);
+    display: none; align-items: flex-end; justify-content: center; z-index: 10;
+  }
+  .aviso-fundo.ativo { display: flex; }
+  .aviso {
+    width: 100%; max-width: 460px; background: var(--creme-claro);
+    border-radius: 26px 26px 0 0; padding: 26px 24px 30px; text-align: center;
+  }
+  .aviso h3 { font-family: "Fraunces", Georgia, serif; font-weight: 600; font-size: 22px; margin-bottom: 8px; }
+  .aviso p { font-size: 14px; color: var(--suave); line-height: 1.5; }
+  .aviso ol { text-align: left; margin: 16px 0 18px 20px; font-size: 15px; line-height: 1.7; }
+  .aviso ol b { color: var(--magenta); }
+  .aviso button, .aviso a.botao {
+    display: block; width: 100%; border: 0; border-radius: 14px; padding: 14px;
+    font: 700 15px "Manrope", sans-serif; text-decoration: none; margin-top: 8px; cursor: pointer;
+  }
+  .aviso .principal { background: var(--magenta); color: var(--creme); }
+  .aviso .secundario { background: transparent; color: var(--suave); border: 1px solid var(--linha); }
 </style>
 </head>
 <body>
@@ -211,5 +232,60 @@
     </footer>
   </div>
 </main>
+
+<div class="aviso-fundo" id="aviso">
+  <div class="aviso">
+    <h3>Abra no navegador 💖</h3>
+    <p>O Instagram não deixa abrir o TikTok Shop daqui. É rapidinho:</p>
+    <ol>
+      <li>Toque nos <b>3 pontinhos •••</b> lá em cima</li>
+      <li>Escolha <b>"Abrir no navegador"</b> (ou "Abrir no Safari")</li>
+      <li>Toque no achado de novo e ele abre no TikTok</li>
+    </ol>
+    <button class="principal" id="copiar">Copiar link do achado</button>
+    <button class="secundario" id="fechar">Fechar</button>
+  </div>
+</div>
+
+<script>
+  // Navegador interno do Instagram/Facebook não passa a pessoa para o app do TikTok.
+  (function () {
+    var ua = navigator.userAgent || "";
+    var dentroDoApp = /Instagram|FBAN|FBAV|FB_IAB/i.test(ua);
+    var android = /Android/i.test(ua);
+    if (!dentroDoApp) return;
+
+    var aviso = document.getElementById("aviso");
+    var linkAtual = "";
+
+    document.querySelectorAll("a.produto").forEach(function (a) {
+      a.addEventListener("click", function (e) {
+        var url = a.href;
+        if (android) {
+          // Android: pede para o sistema abrir o link no app do TikTok; se não tiver o app, abre no Chrome.
+          e.preventDefault();
+          var semProtocolo = url.replace(/^https?:\/\//, "");
+          window.location.href = "intent://" + semProtocolo +
+            "#Intent;scheme=https;package=com.zhiliaoapp.musically;S.browser_fallback_url=" +
+            encodeURIComponent(url) + ";end";
+          return;
+        }
+        // iPhone: mostra como abrir fora do Instagram.
+        e.preventDefault();
+        linkAtual = url;
+        aviso.classList.add("ativo");
+      });
+    });
+
+    document.getElementById("fechar").onclick = function () { aviso.classList.remove("ativo"); };
+    aviso.onclick = function (e) { if (e.target === aviso) aviso.classList.remove("ativo"); };
+    document.getElementById("copiar").onclick = function () {
+      var botao = this;
+      var pronto = function () { botao.textContent = "Link copiado! Cole no Safari ou no TikTok"; };
+      if (navigator.clipboard) { navigator.clipboard.writeText(linkAtual).then(pronto, function () { prompt("Copie o link:", linkAtual); }); }
+      else { prompt("Copie o link:", linkAtual); }
+    };
+  })();
+</script>
 </body>
 </html>
