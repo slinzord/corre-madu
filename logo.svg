@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1254 1254">
+  <!-- Logo Corre Madu redesenhado a partir da arte enviada pela operadora em 07/11/2026 -->
+  <rect width="1254" height="1254" fill="#D10650"/>
+  <g fill="none" stroke="#FFF3EA" stroke-linecap="round" stroke-linejoin="round" stroke-width="22">
+    <!-- alça -->
+    <path d="M527 408 C520 330 555 285 605 283 C655 281 690 330 693 392"/>
+    <!-- corpo da sacola -->
+    <path d="M470 403 L742 364 Q760 362 765 378 L830 605 Q835 628 812 628 C700 615 580 628 462 648 Q430 652 428 620 L462 412 Q464 404 470 403 Z"/>
+    <!-- coração -->
+    <path d="M630 520 C605 470 560 455 552 482 C545 512 590 556 636 590 C670 545 700 500 696 470 C692 445 655 450 630 520 Z"/>
+    <!-- brilhos -->
+    <path d="M845 258 L822 350"/>
+    <path d="M950 312 L875 378"/>
+    <path d="M985 428 L898 426"/>
+    <!-- sublinhado -->
+    <path d="M222 922 C450 820 830 810 1022 916" stroke-width="18"/>
+  </g>
+  <text x="627" y="818" text-anchor="middle" fill="#FFF3EA"
+        font-family="'Segoe UI', 'Helvetica Neue', Arial, sans-serif" font-size="178" letter-spacing="-4">
+    <tspan font-weight="300">corre.</tspan><tspan font-weight="900">madu</tspan><tspan font-weight="300">.br</tspan>
+  </text>
+</svg>

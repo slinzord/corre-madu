@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>corre.madu.br — Achou, avisou!</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;1,9..144,400&family=Manrope:wght@400;500;700;800&display=swap" rel="stylesheet">
+<style>
+  /* Paleta do logo: magenta + creme */
+  :root {
+    --magenta: #D10650;
+    --magenta-escuro: #A8043F;
+    --creme: #FFF3EA;
+    --creme-claro: #FFFAF6;
+    --tinta: #3A1424;
+    --suave: #8C6B76;
+    --linha: rgba(209, 6, 80, .14);
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: "Manrope", "Segoe UI", system-ui, sans-serif;
+    background: var(--creme-claro);
+    color: var(--tinta);
+    -webkit-font-smoothing: antialiased;
+  }
+  main { max-width: 460px; margin: 0 auto; padding-bottom: 40px; }
+
+  /* Topo magenta com o logo */
+  .topo {
+    background: var(--magenta);
+    border-radius: 0 0 36px 36px;
+    padding: 12px 24px 30px;
+    text-align: center;
+    color: var(--creme);
+  }
+  .topo img { width: 230px; max-width: 70%; display: block; margin: 0 auto -6px; }
+  .bordao {
+    font-family: "Fraunces", Georgia, serif;
+    font-style: italic; font-size: 22px; letter-spacing: .2px;
+  }
+  .temas {
+    margin-top: 8px; font-size: 11px; font-weight: 700;
+    letter-spacing: 2.4px; text-transform: uppercase; opacity: .82;
+  }
+
+  .conteudo { padding: 0 20px; }
+
+  /* Botão do grupo */
+  .grupo {
+    position: relative; margin-top: -22px;
+    display: flex; align-items: center; gap: 14px;
+    background: var(--creme); color: var(--magenta);
+    border: 1.5px solid var(--magenta);
+    border-radius: 20px; padding: 16px 18px;
+    text-decoration: none;
+    box-shadow: 0 14px 30px -12px rgba(168, 4, 63, .45);
+    transition: transform .2s ease;
+  }
+  .grupo:active { transform: scale(.98); }
+  .grupo .icone {
+    flex-shrink: 0; width: 46px; height: 46px; border-radius: 50%;
+    background: var(--magenta); display: grid; place-items: center;
+  }
+  .grupo .icone svg { width: 24px; height: 24px; fill: var(--creme); }
+  .grupo .rotulo { font-size: 10.5px; font-weight: 800; letter-spacing: 2.2px; text-transform: uppercase; opacity: .8; }
+  .grupo .titulo { font-family: "Fraunces", Georgia, serif; font-size: 21px; font-weight: 600; line-height: 1.15; margin: 1px 0 2px; color: var(--tinta); }
+  .grupo .sub { font-size: 13px; color: var(--suave); }
+  .grupo .seta { margin-left: auto; font-size: 22px; }
+  .nota { text-align: center; font-size: 12px; color: var(--suave); margin: 12px 0 34px; }
+
+  /* Título de seção */
+  .secao { display: flex; align-items: center; gap: 12px; margin-bottom: 16px; }
+  .secao h2 { font-family: "Fraunces", Georgia, serif; font-weight: 400; font-size: 24px; white-space: nowrap; }
+  .secao h2 em { color: var(--magenta); }
+  .secao span { flex: 1; height: 1px; background: var(--linha); }
+
+  /* Produtos em grade */
+  .produtos { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  .produto {
+    text-decoration: none; color: var(--tinta);
+    background: #fff; border-radius: 18px; overflow: hidden;
+    border: 1px solid var(--linha);
+    display: flex; flex-direction: column;
+  }
+  .produto .foto-produto { position: relative; aspect-ratio: 1; background: var(--creme); }
+  .produto img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .selo {
+    position: absolute; top: 8px; left: 8px;
+    background: var(--magenta); color: var(--creme);
+    font-size: 9.5px; font-weight: 800; letter-spacing: 1.5px;
+    padding: 4px 8px; border-radius: 99px;
+  }
+  .produto .texto { padding: 11px 12px 13px; display: flex; flex-direction: column; flex: 1; }
+  .produto .nome { font-weight: 700; font-size: 14px; line-height: 1.25; }
+  .produto .porque { font-size: 12px; color: var(--suave); margin-top: 3px; line-height: 1.35; flex: 1; }
+  .produto .ver { margin-top: 10px; font-size: 11px; font-weight: 800; letter-spacing: 1.4px; text-transform: uppercase; color: var(--magenta); }
+
+  /* Rodapé */
+  .redes { display: flex; justify-content: center; gap: 10px; margin: 34px 0 20px; }
+  .redes a {
+    text-decoration: none; color: var(--magenta);
+    border: 1px solid var(--magenta); border-radius: 99px;
+    padding: 9px 20px; font-size: 13px; font-weight: 700; letter-spacing: .5px;
+  }
+  footer { text-align: center; font-size: 11.5px; color: var(--suave); line-height: 1.6; padding: 0 30px; }
+  footer strong { color: var(--magenta); font-family: "Fraunces", Georgia, serif; font-style: italic; font-weight: 400; font-size: 15px; display: block; margin-bottom: 4px; }
+</style>
+</head>
+<body>
+<main>
+  <header class="topo">
+    <img src="logo.svg" alt="corre.madu.br">
+    <p class="bordao">Achou, avisou!</p>
+    <p class="temas">casa · maternidade · autocuidado</p>
+  </header>
+
+  <div class="conteudo">
+    <a class="grupo" href="https://chat.whatsapp.com/DivqQ5OYVhw6W9fUMGGjKW" target="_blank" rel="noopener">
+      <span class="icone" aria-hidden="true">
+        <svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2Zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.2-.4.2-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.8 11.9 11.9 0 0 0 4.6 4c1.7.7 2.3.8 3.2.6a2.7 2.7 0 0 0 1.8-1.2 2.2 2.2 0 0 0 .2-1.3c-.1-.1-.2-.2-.5-.3Z"/></svg>
+      </span>
+      <span>
+        <span class="rotulo">Grupo VIP</span>
+        <span class="titulo" style="display:block">Entrar no grupo</span>
+        <span class="sub">Cupons e promos que acabam rápido</span>
+      </span>
+      <span class="seta" aria-hidden="true">→</span>
+    </a>
+    <p class="nota">Só a Madu posta no grupo · sem spam · sai quando quiser</p>
+
+    <div class="secao"><h2>Achadinhos <em>do momento</em></h2><span></span></div>
+
+    <!-- Cada produto: foto, nome fiel ao anúncio, 1 frase só com fatos do anúncio, link de afiliada. Sem preço. -->
+    <div class="produtos">
+      <a class="produto" href="https://vt.tiktok.com/ZS9fYG1CRrvyc-Ze10g/" target="_blank" rel="noopener">
+        <div class="foto-produto"><img src="fotos/copo-romantic-crown.webp" alt="Copo térmico Romantic Crown" loading="lazy"><span class="selo">NOVO</span></div>
+        <div class="texto">
+          <div class="nome">Copo térmico Romantic Crown</div>
+          <div class="porque">Inox, 1,2 L, com tampa e canudo</div>
+          <div class="ver">Ver achado →</div>
+        </div>
+      </a>
+      <a class="produto" href="https://vt.tiktok.com/ZS9fYG8e7xRxh-SoC2T/" target="_blank" rel="noopener">
+        <div class="foto-produto"><img src="fotos/percarbonato.webp" alt="Percarbonato de sódio" loading="lazy"></div>
+        <div class="texto">
+          <div class="nome">Percarbonato de sódio</div>
+          <div class="porque">100% puro, tira manchas de roupa branca</div>
+          <div class="ver">Ver achado →</div>
+        </div>
+      </a>
+      <a class="produto" href="https://vt.tiktok.com/ZS9fYscwnbFNs-VF0MI/" target="_blank" rel="noopener">
+        <div class="foto-produto"><img src="fotos/granado-colonia.webp" alt="Colônia Granado 230 ml" loading="lazy"></div>
+        <div class="texto">
+          <div class="nome">Colônia Granado 230 ml</div>
+          <div class="porque">Cardamomo, menta, mandarina, lavanda e bergamota</div>
+          <div class="ver">Ver achado →</div>
+        </div>
+      </a>
+      <a class="produto" href="https://vt.tiktok.com/ZS9fYGFudQafn-280yA/" target="_blank" rel="noopener">
+        <div class="foto-produto"><img src="fotos/skelt-amalfi.webp" alt="Skelt Amalfi Sunset" loading="lazy"></div>
+        <div class="texto">
+          <div class="nome">Skelt Amalfi Sunset</div>
+          <div class="porque">Perfume mist 100 ml</div>
+          <div class="ver">Ver achado →</div>
+        </div>
+      </a>
+      <a class="produto" href="https://vt.tiktok.com/ZS9fYsnbeYRHg-cW2O6/" target="_blank" rel="noopener">
+        <div class="foto-produto"><img src="fotos/lattafa-atheeri.webp" alt="Lattafa Atheeri" loading="lazy"></div>
+        <div class="texto">
+          <div class="nome">Lattafa Atheeri</div>
+          <div class="porque">Eau de parfum 100 ml</div>
+          <div class="ver">Ver achado →</div>
+        </div>
+      </a>
+      <a class="produto" href="https://vt.tiktok.com/ZS9fYswuaYSHQ-UTFHv/" target="_blank" rel="noopener">
+        <div class="foto-produto"><img src="fotos/escova-elgin.webp" alt="Escova secadora Elgin" loading="lazy"></div>
+        <div class="texto">
+          <div class="nome">Escova secadora Elgin</div>
+          <div class="porque">Agile Glossy, 1300 W, bivolt</div>
+          <div class="ver">Ver achado →</div>
+        </div>
+      </a>
+      <a class="produto" href="https://vt.tiktok.com/ZS9fYGkkdXgSk-QMETI/" target="_blank" rel="noopener">
+        <div class="foto-produto"><img src="fotos/giro-magico.webp" alt="Giro Mágico 7 peças" loading="lazy"></div>
+        <div class="texto">
+          <div class="nome">Giro Mágico 7 peças</div>
+          <div class="porque">Blocos empilháveis pra bebês a partir de 12 meses</div>
+          <div class="ver">Ver achado →</div>
+        </div>
+      </a>
+      <a class="produto" href="https://vt.tiktok.com/ZS9fYGrJRkME3-DKNld/" target="_blank" rel="noopener">
+        <div class="foto-produto"><img src="fotos/bike-ergometrica.webp" alt="Bike ergométrica spinning" loading="lazy"></div>
+        <div class="texto">
+          <div class="nome">Bike ergométrica spinning</div>
+          <div class="porque">Suporta até 120 kg</div>
+          <div class="ver">Ver achado →</div>
+        </div>
+      </a>
+    </div>
+
+    <div class="redes">
+      <a href="https://www.tiktok.com/@madu.santana.shop">TikTok</a>
+      <a href="https://www.instagram.com/corre.madu.br/">Instagram</a>
+    </div>
+
+    <footer>
+      <strong>com carinho, Madu</strong>
+      Links de afiliada: posso ganhar comissão nas compras, sem custo a mais pra você.
+    </footer>
+  </div>
+</main>
+</body>
+</html>
